@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.javaMavenWeb</groupId>
-  <artifactId>JavaMavenWebApp</artifactId>
+  <artifactId>JavaWebPlay</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>JavaMavenWebApp</name>
+  <name>JavaWebPlay</name>
   <url>http://maven.apache.org</url>
   <repositories>
     <repository>
@@ -42,7 +42,7 @@
   <build>
     <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
    	<outputDirectory>${project.basedir}/target/classes</outputDirectory>
-    <finalName>JavaMavenWebApp</finalName>
+    <finalName>JavaWebPlay</finalName>
     <resources>
       <resource>
          <directory>${project.basedir}/src/main/webapp</directory>
@@ -76,7 +76,7 @@
             </webResources>
             <warSourceDirectory>target</warSourceDirectory>
         	<failOnMissingWebXml>false</failOnMissingWebXml>
-        	<warName>JavaMavenWebApp</warName>
+        	<warName>JavaWebPlay</warName>
         </configuration>
 	  </plugin>
     </plugins>
