@@ -18,7 +18,7 @@ public class OkdServletOne extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public OkdServletOne() {
-        super();
+        //super();
         // TODO Auto-generated constructor stub
     }
 
