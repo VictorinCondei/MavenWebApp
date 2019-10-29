@@ -24,6 +24,7 @@ public class SQLDBTools {
 		databaseURL += System.getenv("POSTGRESQL_SERVICE_HOST");
 		databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
 		try {
+			obState="Try to connect user: "+username+" password: "+password+" conString: "+databaseURL+" \n";
 			connection = DriverManager.getConnection(databaseURL, username,password);
 			if (connection != null) {
 				return connection;
@@ -31,7 +32,7 @@ public class SQLDBTools {
 		}catch (Exception e) {
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
-            obState = sw.toString();          
+            obState += sw.toString();          
 		}
 		return null;  
 	}
