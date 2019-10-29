@@ -44,7 +44,7 @@ public class OkdPatternServlet extends HttpServlet {
 		String yourName = request.getParameter("yourName");
 		PrintWriter writer = response.getWriter();
 		SQLDBTools st=new SQLDBTools();
-		if (st.SQLDBConnect() == null) {
+		if (st.SQLDBConnect() != null) {
 			writer.println("<h1>DB Connection OK </h1>");
 			if (act == 1) {
 				yourName +="1: "+st.GetFromDB();
