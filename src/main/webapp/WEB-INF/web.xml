@@ -24,4 +24,7 @@
   	<servlet-name>OkdPatternServlet</servlet-name>
   	<url-pattern>/OkdPatternServlet</url-pattern>
   </servlet-mapping>
+  <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>
