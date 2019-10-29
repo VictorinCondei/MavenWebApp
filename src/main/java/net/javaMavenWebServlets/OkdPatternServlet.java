@@ -42,14 +42,19 @@ public class OkdPatternServlet extends HttpServlet {
 	}
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response, int act) throws ServletException, IOException {
 		String yourName = request.getParameter("yourName");
-		SQLDBTools st=new SQLDBTools();
-		st.SQLDBConnect();
-		if (act == 1) {
-			st.GetFromDB();
-		}else {
-			yourName +=st.PostToDB(yourName);
-		}
 		PrintWriter writer = response.getWriter();
+		SQLDBTools st=new SQLDBTools();
+		if (st.SQLDBConnect() == null) {
+			writer.println("<h1>DB Connection OK </h1>");
+			if (act == 1) {
+				yourName +="1: "+st.GetFromDB();
+			}else {
+				yourName +="2: "+st.PostToDB(yourName);
+			}
+		} else {
+			writer.println("<h1>DB Connection ERROR "+st.GetState()+" </h1>");
+		}
+		
 		writer.println("<h1>PatternServlet " + yourName + "</h1>");
 		writer.close();
 	}

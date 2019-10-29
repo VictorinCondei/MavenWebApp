@@ -1,9 +1,10 @@
 <html>
 <body>
-<h2>Hello JSP and Servlet!</h2>
+<h2>Maven Java Web</h2>
+
 <form action="OkdServletOne" method="post">
-    Enter your name: <input type="text" name="yourName" size="20">
-    <input type="submit" value="Call Servlet" />
+    <p>Insert Text <input type="text" name="yourName" size="20"></p>
+    <input type="submit" value="Submit" />
 </form>
 </body>
 </html>

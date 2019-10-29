@@ -1,4 +1,6 @@
 package net.tools;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,7 +11,11 @@ import java.util.Random;
 public class SQLDBTools {
 	
 	private Connection connection = null;
+	private String obState = "NONE";
 	public SQLDBTools(){
+	}
+	public String GetState() {
+		return obState;
 	}
 	public Connection SQLDBConnect(){
 		String username = System.getenv("POSTGRESQL_USER");
@@ -23,13 +29,14 @@ public class SQLDBTools {
 				return connection;
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			return null;
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            obState = sw.toString();          
 		}
+		return null;  
 	}
 	public String GetFromDB() {
-		String outStr="";
+		String outStr="GET ---> ";
 		if (connection != null) {
 			String SQL = "";
 			try {
@@ -38,17 +45,17 @@ public class SQLDBTools {
 				while (rs.next()) {
 					outStr+=rs.getString(1);
 				}
-				return outStr;
 			}catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				return outStr;
+				StringWriter sw = new StringWriter();
+	            e.printStackTrace(new PrintWriter(sw));
+	            outStr = sw.toString();
+	            return outStr;
 			}
 		}
 		return outStr;		
 	}
 	public String PostToDB(String yourName) {
-		String outStr="";
+		String outStr="POST ---> ";
 		Random rand = new Random();
 		int randomNum = rand.nextInt(38);
 		
@@ -61,13 +68,12 @@ public class SQLDBTools {
 				outStr=query;
 				stmt.executeQuery(query);
 				
-				return outStr;
 			}catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				return outStr;
-			}
-		}
+				StringWriter sw = new StringWriter();
+	            e.printStackTrace(new PrintWriter(sw));
+	            outStr = sw.toString();
+	            return outStr;
+			}		}
 		return outStr;		
 	}
 }
