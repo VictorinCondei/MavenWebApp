@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.text.MessageFormat;
 import java.util.Random;
 
@@ -78,15 +79,16 @@ public class SQLDBTools {
 		String outStr="POST ---> ";
 		Random rand = new Random();
 		int randomNum = rand.nextInt(38);
-		
-		String query="INSERT INTO MYTABLE (COL1, COL2) VALUES ("+
-                randomNum+",'"+yourName+"')";
+		String query="INSERT INTO MYTABLE (COL1, COL2) VALUES (?, ?)";
 		if (connection != null) {
 			String SQL = "";
 			try {
-				Statement stmt = connection.createStatement();
-				outStr=query;
-				stmt.executeQuery(query);
+				PreparedStatement pst = connection.prepareStatement(query);
+            			pst.setInt(1, randomNum);
+            			pst.setString(2, yourName);
+            			int aR=pst.executeUpdate();
+				pst.close();
+				outStr=query+"..."+aR;
 				
 			}catch (Exception e) {
 				StringWriter sw = new StringWriter();
