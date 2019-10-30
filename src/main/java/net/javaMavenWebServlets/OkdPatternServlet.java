@@ -45,17 +45,18 @@ public class OkdPatternServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		SQLDBTools st=new SQLDBTools();
 		if (st.SQLDBConnect() != null) {
-			writer.println("<h1>DB Connection OK </h1>");
+			writer.println("<h3>DB Connection OK </h3>");
 			if (act == 1) {
 				yourName +="1: "+st.GetFromDB();
 			}else {
 				yourName +="2: "+st.PostToDB(yourName);
 			}
 		} else {
-			writer.println("<h1>DB Connection ERROR "+st.GetState()+" </h1>");
+			writer.println("<h2>DB Connection ERROR "+st.GetState()+" </h2>");
 		}
 		
-		writer.println("<h1>PatternServlet " + yourName + "</h1>");
+		writer.println("<h3>PatternServlet " + yourName + "</h3>");
+                writer.println("<p><a href = './index.jsp'>Home ...</a>");
 		writer.close();
 	}
 
